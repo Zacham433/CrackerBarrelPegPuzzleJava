@@ -7,7 +7,7 @@ class PegPuzzle {
 	public static void main(String[] args) {
 		Moves ms = new Moves();
 		Gameboard gb = new Gameboard(6);
-		test(gb, ms);
+		solve(gb, ms);
 	}
 	
 	public static Gameboard move(Gameboard gb, Move m) {
@@ -45,6 +45,12 @@ class PegPuzzle {
 	}
 	
 	public static void printSolution(Gameboard gb) {
-		
+		gb.resetGameboard();
+		gb.print();
+		for(int i = 0; i < gb.replayMoves; i++) {
+			gb = move(gb, gb.replay[i]);
+			gb.print();
+		}
+		System.exit(0);
 	}
 }

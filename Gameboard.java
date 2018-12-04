@@ -4,17 +4,21 @@ class Gameboard {
 	public int cells[] = new int[15];		//Contains the gameboard
 	public int count;						//Holds the number of full cells
 	public boolean changed = false;			//Lets the solve function know if the gameboard changed
-	public Move replay[] = new Move[1000];
-	public int replayMoves = 0;
+	public Move replay[] = new Move[1000];	//Holds the information about previous moves to get to the current state
+	public int replayMoves = 0;				//Holds the amount of moves taken so far to get to the current state
+	private int start;						//Holds the initial start state so the board can be reset once the solution is found
 	
-	public Gameboard(int start) {
+	//Basic Constructor (must have a start position)
+	public Gameboard(int s) {
 		for(int i = 0; i < 15; i++) {
 			cells[i] = 1;
 		}
-		cells[start] = 0;
+		cells[s] = 0;
 		count = 14;
+		start = s;
 	}
 	
+	//Copy constructor
 	public Gameboard(Gameboard gb) {
 		for(int i = 0; i < 15; i++) {
 			cells[i] = gb.cells[i];
@@ -24,20 +28,15 @@ class Gameboard {
 		}
 		count = gb.count;
 		replayMoves = gb.replayMoves;
+		start = gb.start;
 		changed = false;
 	}
 	
-	public void move(Move m) {
-		if(cells[m.from] == 1 && cells[m.over] == 1 && cells[m.to] == 0) {
-			cells[m.from] = 0;
-			cells[m.over] = 0;
-			cells[m.to] = 1;
-			count = count - 1;
-			changed = true;
+	public void resetGameboard() {
+		for(int i = 0; i < 15; i++) {
+			cells[i] = 1;
 		}
-		else {
-			changed = false;
-		}
+		cells[start] = 0;
 	}
 	
 	public void print() {

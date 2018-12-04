@@ -5,6 +5,7 @@ class Gameboard {
 	public int count;						//Holds the number of full cells
 	public boolean changed = false;			//Lets the solve function know if the gameboard changed
 	public Move replay[] = new Move[1000];
+	public int replayMoves = 0;
 	
 	public Gameboard(int start) {
 		for(int i = 0; i < 15; i++) {
@@ -18,7 +19,11 @@ class Gameboard {
 		for(int i = 0; i < 15; i++) {
 			cells[i] = gb.cells[i];
 		}
+		for(int i = 0; i < gb.replayMoves; i++) {
+			replay[i] = gb.replay[i];
+		}
 		count = gb.count;
+		replayMoves = gb.replayMoves;
 		changed = false;
 	}
 	

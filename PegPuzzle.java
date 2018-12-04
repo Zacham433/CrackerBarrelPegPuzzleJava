@@ -5,9 +5,7 @@ import java.util.*;
 class PegPuzzle {
 
 	public static void main(String[] args) {
-		Moves ms = new Moves();
-		Gameboard gb = new Gameboard(6);
-		solve(gb, ms);
+		Puzzle(0);
 	}
 	
 	public static Gameboard move(Gameboard gb, Move m) {
@@ -34,9 +32,6 @@ class PegPuzzle {
 				gbnew.replay[gbnew.replayMoves] = temp;
 				gbnew.replayMoves = gbnew.replayMoves + 1;
 				if(gbnew.count < 2) {
-					for(int j = 0; j < gbnew.replayMoves; j++) {
-						gbnew.replay[j].print();
-					}
 					printSolution(gbnew);
 				}
 				solve(gbnew, ms);
@@ -51,6 +46,16 @@ class PegPuzzle {
 			gb = move(gb, gb.replay[i]);
 			gb.print();
 		}
-		System.exit(0);
+		Puzzle(gb.start + 1);
+	}
+	
+	public static void Puzzle(int start) {
+		if(start > 5) {
+			System.exit(0);
+		}
+		System.out.println("=== " + start + " ===");
+		Moves ms = new Moves();
+		Gameboard gb = new Gameboard(start);
+		solve(gb, ms);
 	}
 }

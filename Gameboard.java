@@ -6,7 +6,7 @@ class Gameboard {
 	public boolean changed = false;			//Lets the solve function know if the gameboard changed
 	public Move replay[] = new Move[1000];	//Holds the information about previous moves to get to the current state
 	public int replayMoves = 0;				//Holds the amount of moves taken so far to get to the current state
-	private int start;						//Holds the initial start state so the board can be reset once the solution is found
+	public int start;						//Holds the initial start state so the board can be reset once the solution is found
 	
 	//Basic Constructor (must have a start position)
 	public Gameboard(int s) {

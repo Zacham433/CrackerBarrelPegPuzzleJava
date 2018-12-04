@@ -1,5 +1,5 @@
 class Moves {
-	public Move moves[] = new Move[18];
+	public Move moves[] = new Move[36];
 	public int count;
 	
 	public Moves() {
@@ -21,7 +21,14 @@ class Moves {
 		moves[15] = new Move(10,11,12);
 		moves[16] = new Move(11,12,13);
 		moves[17] = new Move(12,13,14);
-		count = 18;
+		
+		int j = 18;
+		for(int i = 0; i < 18; i++) {
+			moves[j] = new Move(moves[i].to, moves[i].over, moves[i].from);
+			j++;
+		}
+		
+		count = 36;
 	}
 	
 	public Move getMove(int i) {
